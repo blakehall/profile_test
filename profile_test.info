@@ -1,0 +1,209 @@
+; -----------------------------------------------------------------------------
+;                             Introduction
+; -----------------------------------------------------------------------------
+; Well, this is it! An example Profiler include, showing you how to create your 
+; own Install profiles easily. This file uses Drupal's info format, which is 
+; very similar to PHP's own ini format, however you can use nested arrays in 
+; Drupal's version, which comes in handy for lots of stuff, as you'll see below.
+;
+; "Wait, you said this would be easy, what is all this stuff?"
+;
+; There aren't really any mandatory things here, but if you don't put anything 
+; in here, your install profile won't do much. :) Don't get overwhelmed, just
+; go slow and make a few changes here and there till you get the hang of
+; what's happening.
+;
+; I've tried to create examples for every piece of functionality below, but to 
+; get a quick breakdown of what's currently available, here's a list of all the 
+; possible items:
+;
+; - base
+; - dependencies
+; - nodes
+; - terms
+; - theme
+; - users
+; - variables
+; -----------------------------------------------------------------------------
+
+name = profile_test
+description = profile_test base profile
+core = 6.x
+theme = bluemarine
+
+; -----------------------------------------------------------------------------
+; You could specify this as a base Profiler include by using the following in
+; your own Install profile's Profiler include. Then everything in this file
+; would be merged with your Profiler include:
+; -----------------------------------------------------------------------------
+; base = profiler_example
+
+
+; -----------------------------------------------------------------------------
+;                                  Modules
+; -----------------------------------------------------------------------------
+; List the modules (core, contrib and/or features) to be enabled in the
+; dependencies[] array. Any dependencies of the listed modules will be detected
+; and enabled automatically.
+; -----------------------------------------------------------------------------
+dependencies[] = filter
+dependencies[] = help
+dependencies[] = menu
+dependencies[] = node
+dependencies[] = path
+dependencies[] = system
+dependencies[] = user
+
+; CCK
+dependencies[] = content
+dependencies[] = content_copy
+dependencies[] = fieldgroup
+dependencies[] = filefield
+dependencies[] = imagefield
+dependencies[] = link
+dependencies[] = nodereference
+dependencies[] = number
+dependencies[] = optionwidgets
+dependencies[] = text
+dependencies[] = userreference
+
+; Earl
+dependencies[] = ctools
+dependencies[] = views
+;dependencies[] = panels
+; Views
+dependencies[] = draggableviews
+dependencies[] = semanticviews
+dependencies[] = similarterms
+dependencies[] = views_bulk_operations
+dependencies[] = views_calc
+dependencies[] = views_cycle
+;dependencies[] = views_export
+dependencies[] = views_groupby
+dependencies[] = jcarousel
+
+; Images
+dependencies[] = imageapi
+dependencies[] = imagecache
+
+; Ubercart
+dependencies[] = uc_cart
+dependencies[] = ca
+dependencies[] = uc_order
+dependencies[] = uc_product
+dependencies[] = uc_store
+dependencies[] = uc_attribute
+dependencies[] = uc_payment
+dependencies[] = uc_reports
+dependencies[] = uc_roles
+dependencies[] = uc_tax_report
+dependencies[] = uc_taxes
+dependencies[] = uc_atctweaks
+dependencies[] = uc_cart_links
+dependencies[] = uc_termsofservice
+dependencies[] = uc_authorizenet
+dependencies[] = uc_credit
+dependencies[] = uc_free_order
+dependencies[] = uc_coupon
+dependencies[] = test_gateway
+dependencies[] = uc_recurring_hosted
+dependencies[] = uc_recurring
+dependencies[] = uc_recurring_product
+dependencies[] = uc_recurring_subscription
+dependencies[] = uc_recurring
+
+; Pretty
+dependencies[] = jquery_ui
+dependencies[] = jquery_update
+dependencies[] = vertical_tabs
+dependencies[] = better_formats
+dependencies[] = bueditor
+
+; Other
+dependencies[] = adminrole
+dependencies[] = advanced_help
+dependencies[] = amazon_s3
+dependencies[] = auto_nodetitle
+dependencies[] = boxes
+dependencies[] = comment_notify
+dependencies[] = commentmail
+dependencies[] = context
+dependencies[] = date
+dependencies[] = devel
+dependencies[] = diff
+dependencies[] = flag
+dependencies[] = flag_weights
+dependencies[] = globalredirect
+dependencies[] = google_analytics
+dependencies[] = libraries
+dependencies[] = login_destination
+dependencies[] = logintoboggan
+dependencies[] = mass_contact
+dependencies[] = nodewords
+dependencies[] = options_element
+dependencies[] = password_change
+dependencies[] = pathauto
+dependencies[] = ed_readmore
+dependencies[] = radioactivity
+dependencies[] = role_watchdog
+dependencies[] = securepages
+dependencies[] = session_limit
+dependencies[] = sevenup
+dependencies[] = statistics_advanced
+dependencies[] = stringoverrides
+dependencies[] = strongarm
+dependencies[] = supercron
+dependencies[] = term_node_count
+dependencies[] = token
+dependencies[] = votingapi
+dependencies[] = webform
+
+; Custom
+dependencies[] = chaptermarkers
+
+; -----------------------------------------------------------------------------
+;                                   Users
+; -----------------------------------------------------------------------------
+; One other thing to note here is that there's this (handy) quirk in Drupal's 
+; install API in that you can bypass the configuration form during installation
+; (where you'd normally set up user 1 credentials and the site name and such).
+; To do this you need to specify credentials for user 1 and also specify the
+; site name and site email variables (@see Variables below). 
+; -----------------------------------------------------------------------------
+
+users[superduper][uid]    = 1
+users[superduper][name]   = admin
+users[superduper][mail]   = admin@admin
+users[superduper][roles]  = Admin,Publisher
+users[superduper][status] = 1
+
+; -----------------------------------------------------------------------------
+;                                  Variables
+; -----------------------------------------------------------------------------
+; These variables should be pretty self explanatory, as they are just an array
+; of key value pairs for items in the variable table. Nested arrays also can 
+; crop up here, since variables can be arrays.
+;
+; Also, make note of the site_name and site_mail variables below. These 
+; variables need to be set if you want to bypass the Configuration form during 
+; installation (@see Users for more information on how this is accomplished).
+; -----------------------------------------------------------------------------
+variables[site_name] = profile_test
+variables[site_mail] = testing@testing
+
+;variables[site_footer] = Profiler Example
+;variables[site_frontpage] = node/1
+;variables[theme_settings][toggle_node_info_page] = 0
+
+; You may also want to set the clean url variable if you don't need clean urls. 
+; Since we bypassed the configuration screen, it is enabled by default, so to 
+; disable it you'll want to uncomment this line:
+; variables[clean_url] = 0
+
+; -----------------------------------------------------------------------------
+;                                    Nodes
+; -----------------------------------------------------------------------------
+nodes[front][type] = page
+nodes[front][title] = Isn't Profiler nifty?
+nodes[front][uid] = 1
+nodes[front][body] = <p>Donec vel ipsum elit. In rutrum, ante at fringilla pharetra, mi justo fermentum risus; eget commodo est mi lobortis augue. Proin fringilla malesuada semper. Ut velit sapien, condimentum vel faucibus ut, aliquam quis dui? Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus vulputate fringilla enim, non convallis nibh lacinia at. Etiam fermentum, lectus ac sagittis volutpat, est augue tincidunt mi, et consectetur orci nisi sit amet sapien. Ut nisi nunc, molestie quis sollicitudin at, dignissim eget nisl? Sed vitae sem lectus. Curabitur viverra laoreet magna. Sed eget sapien tellus, eu tempor purus. Proin dignissim, lacus vitae venenatis porttitor, justo libero rhoncus felis, nec dictum nisl mi vitae nisi. Maecenas tincidunt eros at turpis sollicitudin nec viverra enim condimentum. Sed nec enim justo. In tristique risus dui; ac egestas mi. Proin at arcu sed enim eleifend ornare eu at arcu. Curabitur ullamcorper, ipsum eu imperdiet pharetra, mauris lorem hendrerit metus, in consectetur mauris est iaculis eros. Quisque euismod hendrerit metus ullamcorper tempus! Cras gravida ornare arcu vitae commodo. In hac habitasse platea turpis duis.</p>
