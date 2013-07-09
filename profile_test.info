@@ -80,37 +80,10 @@ dependencies[] = views_calc
 dependencies[] = views_cycle
 ;dependencies[] = views_export
 dependencies[] = views_groupby
-dependencies[] = jcarousel
 
 ; Images
 dependencies[] = imageapi
 dependencies[] = imagecache
-
-; Ubercart
-dependencies[] = uc_cart
-dependencies[] = ca
-dependencies[] = uc_order
-dependencies[] = uc_product
-dependencies[] = uc_store
-dependencies[] = uc_attribute
-dependencies[] = uc_payment
-dependencies[] = uc_reports
-dependencies[] = uc_roles
-dependencies[] = uc_tax_report
-dependencies[] = uc_taxes
-dependencies[] = uc_atctweaks
-dependencies[] = uc_cart_links
-dependencies[] = uc_termsofservice
-dependencies[] = uc_authorizenet
-dependencies[] = uc_credit
-dependencies[] = uc_free_order
-dependencies[] = uc_coupon
-dependencies[] = test_gateway
-dependencies[] = uc_recurring_hosted
-dependencies[] = uc_recurring
-dependencies[] = uc_recurring_product
-dependencies[] = uc_recurring_subscription
-dependencies[] = uc_recurring
 
 ; Pretty
 dependencies[] = jquery_ui
